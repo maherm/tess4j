@@ -231,6 +231,26 @@ public class TesseractTest {
     }
 
     /**
+     * Test of createDocuments method, of class Tesseract1.
+     *
+     * @throws java.lang.Exception
+     */
+    @Test
+    public void testCreateDocumentsUmlaut() throws Exception {
+    	logger.info("createDocuments for an image");
+    	File imageFile = new File(this.testResourcesDataPath, "umlaut-ä.tif");
+    	String outputbase = "target/test-classes/test-results/docrenderer1-1";
+    	List<RenderedFormat> formats = new ArrayList<RenderedFormat>(Arrays.asList(RenderedFormat.PDF));
+    	File target = new File(outputbase+".pdf");
+    	
+    	target.delete();
+    	instance.createDocuments(imageFile.getPath(), outputbase, formats);
+    	
+    	assertTrue("outputfile not created", target.exists());
+    	assertTrue("outputfile is empty", target.length()>0);
+    }
+    
+    /**
      * Test of getWords method, of class Tesseract.
      *
      * @throws java.lang.Exception
